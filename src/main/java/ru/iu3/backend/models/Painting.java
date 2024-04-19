@@ -3,22 +3,21 @@ package ru.iu3.backend.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 @Entity
-@Table(name = "countries")
+@Table(name = "paintings")
 @Access(AccessType.FIELD)
-public class Country {
+public class Painting {
 
 
-
-
-    public Country() { }
-    public Country(Long id) {
+    public Painting() { }
+    public Painting(Long id) {
         this.id = id;
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
@@ -27,10 +26,16 @@ public class Country {
     @Column(name = "name", nullable = false, unique = true)
     public String name;
 
+    @JsonIgnore
+    @Column(name = "artistid")
+    public int artistid;
+
+    @Column(name = "museumid")
+    public int museumid;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "country")
-    public List<Artist> artists = new ArrayList<Artist>();
+    @Column(name = "year")
+    public String year;
 
 
 }
