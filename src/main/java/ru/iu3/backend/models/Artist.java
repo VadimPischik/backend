@@ -34,9 +34,9 @@ public class Artist {
     public Country country;
 
 
-    @JsonIgnore
+    /*@JsonIgnore
     @OneToMany(mappedBy = "artist")
-    public List<Painting> paintings = new ArrayList<>();
+    public List<Painting> paintings = new ArrayList<>();*/
 
 
 }
