@@ -60,8 +60,62 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
+
+
+
+					<!--<execution>
+						&lt;!&ndash; optional: you don't really need execution ids, but it looks nice in your build log. &ndash;&gt;
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						&lt;!&ndash; optional: default phase is "generate-resources" &ndash;&gt;
+						<phase>generate-resources</phase>
+					</execution>
+
+				<configuration>
+					<nodeVersion>v4.6.0</nodeVersion>
+
+					&lt;!&ndash; optional: with node version greater than 4.0.0 will use npm provided by node distribution &ndash;&gt;
+					<npmVersion>2.15.9</npmVersion>
+
+					&lt;!&ndash; optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ &ndash;&gt;
+					<downloadRoot>https://nodejs.org/dist/</downloadRoot>
+				</configuration>
+
+				<execution>
+					<id>npm install</id>
+					<goals>
+						<goal>npm</goal>
+					</goals>
+
+					&lt;!&ndash; optional: default phase is "generate-resources" &ndash;&gt;
+					<phase>generate-resources</phase>
+
+					<configuration>
+						&lt;!&ndash; optional: The default argument is actually
+                        "install", so unless you need to run some other npm command,
+                        you can remove this whole <configuration> section.
+                        &ndash;&gt;
+						<arguments>install</arguments>
+					</configuration>
+				</execution>
+				<execution>
+					<id>say hello</id>
+					<goals>
+						<goal>npx</goal>
+					</goals>
+
+					<phase>generate-resources</phase>
+
+					<configuration>
+						<arguments>cowsay hello</arguments>
+					</configuration>
+				</execution>-->
 			</plugin>
 		</plugins>
+
 	</build>
 
 </project>
