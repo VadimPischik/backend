@@ -55,7 +55,6 @@ public class LoginController {
 
                     return new ResponseEntity<Object>(rm, HttpStatus.OK);
                 }
-
             }
         }
         return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
