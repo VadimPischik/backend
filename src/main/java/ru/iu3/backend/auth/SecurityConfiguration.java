@@ -52,9 +52,11 @@ public class SecurityConfiguration {
                 .and()
                 .csrf()
                 .disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and()
-                .exceptionHandling().and()
+                .exceptionHandling()
+                .and()
                 .apply(jwtDsl());
         return http.build();
     }

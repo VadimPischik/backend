@@ -32,7 +32,7 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
     }
 
 
-    @Override
+    /*@Override
     protected UserDetails retrieveUser(String userName, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken)
             throws AuthenticationException {
 
@@ -62,6 +62,32 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
             userRepository.save(u);
         }
 
+        UserDetails user= new User(u.login, u.password,
+                true,
+                true,
+                true,
+                true,
+                AuthorityUtils.createAuthorityList("USER"));
+        return user;
+    }*/
+    @Override
+    protected UserDetails retrieveUser(String userName,
+                                       UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken)
+            throws AuthenticationException {
+
+        Object token = usernamePasswordAuthenticationToken.getCredentials();
+        Optional<ru.iu3.backend.models.User> uu = userRepository.findByToken(String.valueOf(token));
+        if (uu.isEmpty())
+            throw new UsernameNotFoundException("user is not found");
+        ru.iu3.backend.models.User u = uu.get();
+
+        boolean timeout = true;
+        LocalDateTime dt  = LocalDateTime.now();
+        if (u.activity != null) {
+            LocalDateTime nt = u.activity.plusMinutes(sessionTimeout);
+            if (dt.isBefore(nt))
+                timeout = false;
+        }
         UserDetails user= new User(u.login, u.password,
                 true,
                 true,
